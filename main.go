@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"syscall"
 )
 
 func main() {
@@ -15,10 +14,8 @@ func main() {
 
     lnkPath := os.Args[1]
 
-    // Start the command in detached mode to avoid any subprocess blocking
+    // Use rundll32 to open the .lnk file
     cmd := exec.Command("rundll32", "url.dll,FileProtocolHandler", lnkPath)
-    cmd.SysProcAttr = &syscall.SysProcAttr{CreationFlags: syscall.CREATE_NEW_PROCESS_GROUP}
-
     err := cmd.Start()
     if err != nil {
         fmt.Printf("Failed to open %s: %v\n", lnkPath, err)
@@ -26,5 +23,4 @@ func main() {
     }
 
     fmt.Println("Shortcut launched successfully")
-    os.Exit(0) // Explicit exit to prevent hanging
 }
