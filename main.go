@@ -16,7 +16,7 @@ func main() {
 
     // Use rundll32 to open the .lnk file
     cmd := exec.Command("rundll32", "url.dll,FileProtocolHandler", lnkPath)
-    err := cmd.Start()
+    err := cmd.Run()
     if err != nil {
         fmt.Printf("Failed to open %s: %v\n", lnkPath, err)
         os.Exit(1)

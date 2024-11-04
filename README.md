@@ -3,7 +3,7 @@
 ## How to build the exe
 
 ```go
-go build -o lnk-to-exe-proxy.exe main.go
+go build
 ```
 
 ## How to run the exe
